@@ -1,0 +1,19 @@
+#PBS -N nuclearmatter
+#PBS -j eo
+#PBS -q batch
+#PBS -l walltime=03:00:00,nodes=300
+#PBS -A NPH123
+
+export OMP_NUM_THREADS=16
+
+cd /lustre/atlas/scratch/w01/nph123/runs/nucmat_test
+aprun  -n300 -d16 ./prog_ccm.exe ./output/ccm_in_pnm_66_cD_-3.00_cE_-1.00_rho_0.12 > ./output/output/pnm_66_cD_-3.00_cE_-1.00_rho_0.12.out &
+wait
+aprun  -n300 -d16 ./prog_ccm.exe ./output/ccm_in_pnm_66_cD_-3.00_cE_-1.00_rho_0.14 > ./output/output/pnm_66_cD_-3.00_cE_-1.00_rho_0.14.out &
+wait
+aprun  -n300 -d16 ./prog_ccm.exe ./output/ccm_in_pnm_66_cD_-3.00_cE_-1.00_rho_0.16 > ./output/output/pnm_66_cD_-3.00_cE_-1.00_rho_0.16.out &
+wait
+aprun  -n300 -d16 ./prog_ccm.exe ./output/ccm_in_pnm_66_cD_-3.00_cE_-1.00_rho_0.18 > ./output/output/pnm_66_cD_-3.00_cE_-1.00_rho_0.18.out &
+wait
+aprun  -n300 -d16 ./prog_ccm.exe ./output/ccm_in_pnm_66_cD_-3.00_cE_-1.00_rho_0.20 > ./output/output/pnm_66_cD_-3.00_cE_-1.00_rho_0.20.out &
+wait

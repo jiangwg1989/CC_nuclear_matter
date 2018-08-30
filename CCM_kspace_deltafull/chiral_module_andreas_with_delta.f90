@@ -11,6 +11,7 @@ end module chiral_tables
 
 module chiral_constants 
   use constants, only : pi,delta_chiral_order, lambda_delta  
+  use deltafull_parameters
   
   ! basic mesh info
   TYPE, PUBLIC :: chp_mesh_info

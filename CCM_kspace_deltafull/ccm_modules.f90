@@ -103,7 +103,7 @@ END MODULE constants
 
 MODULE deltafull_parameters
   double precision :: LEC_c1_input, LEC_c2_input, LEC_c3_input, LEC_c4_input
-  double precision :: c1s0_input(-1,1),  c3s1_input(-1:1), cnlo_pw_input(1:7)
+  double precision :: c1s0_input(-1:1),  c3s1_input(-1:1), cnlo_pw_input(1:7)
 
 END MODULE deltafull_parameters
 

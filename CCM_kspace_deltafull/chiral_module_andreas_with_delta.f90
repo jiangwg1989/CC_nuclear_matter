@@ -11,7 +11,6 @@ end module chiral_tables
 
 module chiral_constants 
   use constants, only : pi,delta_chiral_order, lambda_delta  
-  use deltafull_parameters
   
   ! basic mesh info
   TYPE, PUBLIC :: chp_mesh_info
@@ -122,6 +121,7 @@ CONTAINS
   subroutine init_chp_constants 
     use parallel 
     use constants, only : chiral_delta_flag, delta_chiral_order, lambda_delta
+    use deltafull_parameters
     implicit none   
     double precision :: c1s0(-1:1), c3s1(-1:1), cnlo_pw(1:7), cn3lo_pw(1:15)
     real*8 :: lambdachi
@@ -192,7 +192,6 @@ CONTAINS
              LEC_c4 = 0.d0 
              LEC_c1_3NF =  LEC_c1
              LEC_c2_3NF =   0.d0 
-             LEC_c3_3NF =  LEC_c3 
              LEC_c4_3NF =  LEC_c4 
           end if
           
@@ -265,10 +264,10 @@ CONTAINS
           end if
           
           if(abs(lambda_delta - 450d0) < 1d-5 ) then
-             LEC_c1 = -7.39999999999999991D-01  
-             LEC_c2 = -5.89999999999999991D-01
-             LEC_c3 = -6.50000000000000022D-01  
-             LEC_c4 =  9.59999999999999964D-01 
+             LEC_c1 = LEC_c1_input 
+             LEC_c2 = LEC_c2_input 
+             LEC_c3 = LEC_c3_input  
+             LEC_c4 = LEC_c4_input 
              LEC_c1_3NF =  LEC_c1 
              LEC_c2_3NF =   0.d0 
              LEC_c3_3NF =  LEC_c3 
@@ -397,12 +396,12 @@ CONTAINS
                     
           !these values are for lambda_delta = 450d0
           elseif(abs(lambda_delta - 450d0) < 1d-5 ) then
-             c1s0(-1) = -3.37136656357900022D-01 ! Ct_1S0pp  call chp_set_CIB_LO_contact(1, -1, -3.37136656357900022D-01) ! Ct_1S0pp
-             c1s0(0)  = -3.38139465283629981D-01 ! Ct_1S0np  call chp_set_CIB_LO_contact(2, -1, -2.29310079440350006D-01) ! Ct_3S1pp
-             c1s0(1)  = -3.38023088490550017D-01 ! Ct_1S0nn  call chp_set_CIB_LO_contact(1,  0, -3.38139465283629981D-01) ! Ct_1S0np
-             c3s1(-1) = -2.29310079440350006D-01 ! Ct_3S1pp  call chp_set_CIB_LO_contact(2,  0, -2.29310079440350006D-01) ! Ct_3S1np
-             c3s1(0)  = -2.29310079440350006D-01 ! Ct_3S1np  call chp_set_CIB_LO_contact(1,  1, -3.38023088490550017D-01) ! Ct_1S0nn
-             c3s1(1)  = -2.29310079440350006D-01 ! Ct_3S1nn  call chp_set_CIB_LO_contact(2,  1, -2.29310079440350006D-01) ! Ct_3S1nn
+             c1s0(-1) = c1s0_input(-1) ! Ct_1S0pp  call chp_set_CIB_LO_contact(1, -1, -3.37136656357900022D-01) ! Ct_1S0pp
+             c1s0(0)  = c1s0_input(0)  ! Ct_1S0np  call chp_set_CIB_LO_contact(2, -1, -2.29310079440350006D-01) ! Ct_3S1pp
+             c1s0(1)  = c1s0_input(1)  ! Ct_1S0nn  call chp_set_CIB_LO_contact(1,  0, -3.38139465283629981D-01) ! Ct_1S0np
+             c3s1(-1) = c3s1_input(-1) ! Ct_3S1pp  call chp_set_CIB_LO_contact(2,  0, -2.29310079440350006D-01) ! Ct_3S1np
+             c3s1(0)  = c3s1_input(0)  ! Ct_3S1np  call chp_set_CIB_LO_contact(1,  1, -3.38023088490550017D-01) ! Ct_1S0nn
+             c3s1(1)  = c3s1_input(1)  ! Ct_3S1nn  call chp_set_CIB_LO_contact(2,  1, -2.29310079440350006D-01) ! Ct_3S1nn
           
           elseif(abs(lambda_delta - 394d0) < 1d-5 ) then
              c1s0(-1) = -3.36845687915189984D-01 ! Ct_1S0pp call chp_set_CIB_LO_contact(1, -1, -3.36845687915189984D-01) ! Ct_1S0pp
@@ -510,13 +509,13 @@ CONTAINS
               
            elseif(abs(lambda_delta - 450d0) < 1d-5 ) then
               !these values are for lambda_delta = 450d0
-              cnlo_pw(1) =  2.47658908242146980D+00 ! C_1S0    
-              cnlo_pw(2) =  6.45550411071979968D-01 ! C_3P0    
-              cnlo_pw(3) = -2.85410030715300030D-02 ! C_1P1    
-              cnlo_pw(4) = -1.02235931835912996D+00 ! C_3P1    
-              cnlo_pw(5) =  6.95953209842609999D-01 ! C_3S1    
-              cnlo_pw(6) =  3.58329844893869986D-01 ! C_3S1-3D1
-              cnlo_pw(7) = -8.70203217397279905D-01 ! C_3P2    
+              cnlo_pw(1) =  cnlo_pw_input(1) ! C_1S0    
+              cnlo_pw(2) =  cnlo_pw_input(2) ! C_3P0    
+              cnlo_pw(3) =  cnlo_pw_input(3) ! C_1P1    
+              cnlo_pw(4) =  cnlo_pw_input(4) ! C_3P1    
+              cnlo_pw(5) =  cnlo_pw_input(5) ! C_3S1    
+              cnlo_pw(6) =  cnlo_pw_input(6) ! C_3S1-3D1
+              cnlo_pw(7) =  cnlo_pw_input(7) ! C_3P2    
            
            elseif(abs(lambda_delta - 394d0) < 1d-5 ) then
               cnlo_pw(1) =  2.46900829544757006D+00 ! C_1S0     

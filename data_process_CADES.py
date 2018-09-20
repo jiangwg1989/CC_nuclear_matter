@@ -137,9 +137,11 @@ y_list = saturation_point[:,1]
 fig_saturation_point = plt.figure('fig_saturation_point')
 
 l1 = plt.scatter(x_list,y_list,color = 'b', s = 10, marker='x')
-
+plt.xlim((0.10,0.22))
+plt.ylim((-25,-10))
 plot_path = 'saturation_point_cD_%.2f_%.2f_cE_%.2f_%.2f.eps' % (cD_min,cD_max,cE_min,cE_max)
 plt.savefig(plot_path)
 plt.show()
-
+for loop1 in range(cE_count*cD_count):
+    print ('saturation_density ='+str(saturation_point[loop1,0])+'saturation_snm ='+str(saturation_point[loop1,1]))
 

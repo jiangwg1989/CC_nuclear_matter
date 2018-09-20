@@ -1,7 +1,69 @@
 #!/bin/bash
-#PBS -l nodes=16:ppn=16
-#PBS -l walltime=00:05:00
+#PBS -l nodes=8:ppn=8
+#PBS -l walltime=10:00:00
 cd /lustre/or-hydra/cades-nucphys/w01
 module purge
 module load PE-gnu R
 Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_-3.00_cE_-1.00_rho_0.16 > ./output/output/pnm_14_cD_-3.00_cE_-1.00_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_-2.00_cE_-1.00_rho_0.16 > ./output/output/pnm_14_cD_-2.00_cE_-1.00_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_-1.00_cE_-1.00_rho_0.16 > ./output/output/pnm_14_cD_-1.00_cE_-1.00_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_0.00_cE_-1.00_rho_0.16 > ./output/output/pnm_14_cD_0.00_cE_-1.00_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_1.00_cE_-1.00_rho_0.16 > ./output/output/pnm_14_cD_1.00_cE_-1.00_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_2.00_cE_-1.00_rho_0.16 > ./output/output/pnm_14_cD_2.00_cE_-1.00_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_3.00_cE_-1.00_rho_0.16 > ./output/output/pnm_14_cD_3.00_cE_-1.00_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_-3.00_cE_-0.75_rho_0.16 > ./output/output/pnm_14_cD_-3.00_cE_-0.75_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_-2.00_cE_-0.75_rho_0.16 > ./output/output/pnm_14_cD_-2.00_cE_-0.75_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_-1.00_cE_-0.75_rho_0.16 > ./output/output/pnm_14_cD_-1.00_cE_-0.75_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_0.00_cE_-0.75_rho_0.16 > ./output/output/pnm_14_cD_0.00_cE_-0.75_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_1.00_cE_-0.75_rho_0.16 > ./output/output/pnm_14_cD_1.00_cE_-0.75_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_2.00_cE_-0.75_rho_0.16 > ./output/output/pnm_14_cD_2.00_cE_-0.75_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_3.00_cE_-0.75_rho_0.16 > ./output/output/pnm_14_cD_3.00_cE_-0.75_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_-3.00_cE_-0.50_rho_0.16 > ./output/output/pnm_14_cD_-3.00_cE_-0.50_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_-2.00_cE_-0.50_rho_0.16 > ./output/output/pnm_14_cD_-2.00_cE_-0.50_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_-1.00_cE_-0.50_rho_0.16 > ./output/output/pnm_14_cD_-1.00_cE_-0.50_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_0.00_cE_-0.50_rho_0.16 > ./output/output/pnm_14_cD_0.00_cE_-0.50_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_1.00_cE_-0.50_rho_0.16 > ./output/output/pnm_14_cD_1.00_cE_-0.50_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_2.00_cE_-0.50_rho_0.16 > ./output/output/pnm_14_cD_2.00_cE_-0.50_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_3.00_cE_-0.50_rho_0.16 > ./output/output/pnm_14_cD_3.00_cE_-0.50_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_-3.00_cE_-0.25_rho_0.16 > ./output/output/pnm_14_cD_-3.00_cE_-0.25_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_-2.00_cE_-0.25_rho_0.16 > ./output/output/pnm_14_cD_-2.00_cE_-0.25_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_-1.00_cE_-0.25_rho_0.16 > ./output/output/pnm_14_cD_-1.00_cE_-0.25_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_0.00_cE_-0.25_rho_0.16 > ./output/output/pnm_14_cD_0.00_cE_-0.25_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_1.00_cE_-0.25_rho_0.16 > ./output/output/pnm_14_cD_1.00_cE_-0.25_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_2.00_cE_-0.25_rho_0.16 > ./output/output/pnm_14_cD_2.00_cE_-0.25_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_3.00_cE_-0.25_rho_0.16 > ./output/output/pnm_14_cD_3.00_cE_-0.25_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_-3.00_cE_0.00_rho_0.16 > ./output/output/pnm_14_cD_-3.00_cE_0.00_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_-2.00_cE_0.00_rho_0.16 > ./output/output/pnm_14_cD_-2.00_cE_0.00_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_-1.00_cE_0.00_rho_0.16 > ./output/output/pnm_14_cD_-1.00_cE_0.00_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_0.00_cE_0.00_rho_0.16 > ./output/output/pnm_14_cD_0.00_cE_0.00_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_1.00_cE_0.00_rho_0.16 > ./output/output/pnm_14_cD_1.00_cE_0.00_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_2.00_cE_0.00_rho_0.16 > ./output/output/pnm_14_cD_2.00_cE_0.00_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_3.00_cE_0.00_rho_0.16 > ./output/output/pnm_14_cD_3.00_cE_0.00_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_-3.00_cE_0.25_rho_0.16 > ./output/output/pnm_14_cD_-3.00_cE_0.25_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_-2.00_cE_0.25_rho_0.16 > ./output/output/pnm_14_cD_-2.00_cE_0.25_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_-1.00_cE_0.25_rho_0.16 > ./output/output/pnm_14_cD_-1.00_cE_0.25_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_0.00_cE_0.25_rho_0.16 > ./output/output/pnm_14_cD_0.00_cE_0.25_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_1.00_cE_0.25_rho_0.16 > ./output/output/pnm_14_cD_1.00_cE_0.25_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_2.00_cE_0.25_rho_0.16 > ./output/output/pnm_14_cD_2.00_cE_0.25_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_3.00_cE_0.25_rho_0.16 > ./output/output/pnm_14_cD_3.00_cE_0.25_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_-3.00_cE_0.50_rho_0.16 > ./output/output/pnm_14_cD_-3.00_cE_0.50_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_-2.00_cE_0.50_rho_0.16 > ./output/output/pnm_14_cD_-2.00_cE_0.50_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_-1.00_cE_0.50_rho_0.16 > ./output/output/pnm_14_cD_-1.00_cE_0.50_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_0.00_cE_0.50_rho_0.16 > ./output/output/pnm_14_cD_0.00_cE_0.50_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_1.00_cE_0.50_rho_0.16 > ./output/output/pnm_14_cD_1.00_cE_0.50_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_2.00_cE_0.50_rho_0.16 > ./output/output/pnm_14_cD_2.00_cE_0.50_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_3.00_cE_0.50_rho_0.16 > ./output/output/pnm_14_cD_3.00_cE_0.50_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_-3.00_cE_0.75_rho_0.16 > ./output/output/pnm_14_cD_-3.00_cE_0.75_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_-2.00_cE_0.75_rho_0.16 > ./output/output/pnm_14_cD_-2.00_cE_0.75_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_-1.00_cE_0.75_rho_0.16 > ./output/output/pnm_14_cD_-1.00_cE_0.75_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_0.00_cE_0.75_rho_0.16 > ./output/output/pnm_14_cD_0.00_cE_0.75_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_1.00_cE_0.75_rho_0.16 > ./output/output/pnm_14_cD_1.00_cE_0.75_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_2.00_cE_0.75_rho_0.16 > ./output/output/pnm_14_cD_2.00_cE_0.75_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_3.00_cE_0.75_rho_0.16 > ./output/output/pnm_14_cD_3.00_cE_0.75_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_-3.00_cE_1.00_rho_0.16 > ./output/output/pnm_14_cD_-3.00_cE_1.00_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_-2.00_cE_1.00_rho_0.16 > ./output/output/pnm_14_cD_-2.00_cE_1.00_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_-1.00_cE_1.00_rho_0.16 > ./output/output/pnm_14_cD_-1.00_cE_1.00_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_0.00_cE_1.00_rho_0.16 > ./output/output/pnm_14_cD_0.00_cE_1.00_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_1.00_cE_1.00_rho_0.16 > ./output/output/pnm_14_cD_1.00_cE_1.00_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_2.00_cE_1.00_rho_0.16 > ./output/output/pnm_14_cD_2.00_cE_1.00_rho_0.16.out &
+Rscript ./prog_ccm.exe ./output/ccm_in_pnm_14_cD_3.00_cE_1.00_rho_0.16 > ./output/output/pnm_14_cD_3.00_cE_1.00_rho_0.16.out &

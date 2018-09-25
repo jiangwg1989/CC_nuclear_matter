@@ -37,7 +37,7 @@ def output_ccm_in_file(file_path,cD,cE,LEC_ci,c1s0,c3s1,cnlo,particle_num,matter
 #def output_job_file(file_path,cD,cE,particle_num,matter_type,density,nmax):
 #    ccm_in_file_path = './output/ccm_in_'+matter_type+'_%d_cD_%.2f_cE_%.2f_rho_%.2f' % (particle_num,cD,cE,density)
 #    ccm_out_file_path = './'+matter_type+'_%d_cD_%.2f_cE_%.2f_rho_%.2f.out &' % (particle_num,cD,cE,density)
-99#    with open(file_path,'w') as f_1:
+#    with open(file_path,'w') as f_1:
 #        f_1.write('export OMP_NUM_THREADS=4'+'\n\n')
 #        f_1.write('/home/g1u/sw/intel_openmpi/bin/mpiexec -np 4 ./prog_ccm.exe '+ccm_in_file_path+' > '+ccm_out_file_path)
 #        f_1.write('wait'+'\n')

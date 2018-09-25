@@ -38,7 +38,7 @@ PROGRAM ccm_kspace
   read(5,*);read(5,*)  cE, cD 
   read(5,*);read(5,*)  LEC_c1_input, LEC_c2_input, LEC_c3_input, LEC_c4_input
   read(5,*);read(5,*)  c1s0_input(-1), c1s0_input(0), c1s0_input(1), c3s1_input(-1), c3s1_input(0), c3s1_input(1)
-  read(5,*);read(5,*)  cnlo_pw_input(1), cnlo_pw_input(2), cnlo_pw_input(3), cnlo_pw_input(4), cnlo_pw_input(5), cnlo_pw_input(6), cnlo_pw_input(7),
+  read(5,*);read(5,*)  cnlo_pw_input(1), cnlo_pw_input(2), cnlo_pw_input(3), cnlo_pw_input(4), cnlo_pw_input(5), cnlo_pw_input(6), cnlo_pw_input(7)
 
   if(iam == 0) write(6,*) 'LEC_c1_input!!!!=', LEC_c1_input 
 

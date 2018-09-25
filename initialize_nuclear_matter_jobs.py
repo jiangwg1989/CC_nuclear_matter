@@ -44,12 +44,12 @@ def output_ccm_in_file(file_path,cD,cE,particle_num,matter_type,density,nmax):
 nmax = 4
 particle_num = 132
 neutron_num = 66
-cE_min = -1
-cE_max = -1
+cE_min = 0
+cE_max = 0
 cE_gap = 1
 cE_count = int( (cE_max - cE_min) / cE_gap + 1 )
-cD_min = -3
-cD_max = -3
+cD_min = 0
+cD_max = 0
 cD_gap = 1
 cD_count = int( (cD_max - cD_min) / cD_gap + 1 )
 density_min = 0.12

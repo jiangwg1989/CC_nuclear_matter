@@ -3,7 +3,7 @@
 #PBS -N 2bcs1
 #PBS -M wjiang18@ornl.gov
 #PBS -l nodes=1:ppn=8
-#PBS -l walltime=10:00:00
+#PBS -l walltime=48:00:00
 #PBS -W group_list=cades-nucphys
 #PBS -A nucphys
 #PBS -l qos=long

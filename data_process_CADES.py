@@ -37,11 +37,11 @@ particle_num = 28
 neutron_num = 14
 cE_min = -1
 cE_max = 1
-cE_gap = 1
+cE_gap = 0.25
 cE_count = int( (cE_max - cE_min) / cE_gap + 1 )
 cD_min = -3
 cD_max = 3
-cD_gap = 2
+cD_gap = 1
 cD_count = int( (cD_max - cD_min) / cD_gap + 1 )
 density_min = 0.12
 density_max = 0.20
@@ -121,6 +121,9 @@ interpol_count = 1000
 saturation_point = np.zeros((cE_count*cD_count,2))
 kind = "quadratic"
 
+#raw_data_1 = raw_data[np.where(raw_data[:,2]<0.20)]
+raw_data_2 = raw_data[np.where( (raw_data[:,0]==0) & (raw_data[:,1]==0) )]
+
 for loop1 in range(cE_count*cD_count):
     x = raw_data[loop1*density_count:loop1*density_count+density_count,2]
     y = raw_data[loop1*density_count:loop1*density_count+density_count,3]
@@ -131,17 +134,39 @@ for loop1 in range(cE_count*cD_count):
     saturation_point[loop1,1] = np.min(y_new)
     temp = spldens[np.where(y_new == np.min(y_new))]
     saturation_point[loop1,0] = temp[0]
+saturation_point_1=saturation_point[np.where(saturation_point[:,0]<0.2)]
+x_list = saturation_point_1[:,0]
+y_list = saturation_point_1[:,1]
 
-x_list = saturation_point[:,0]
-y_list = saturation_point[:,1]
+
+saturation_point_2 = np.zeros((len(raw_data_2)/density_count,2))
+print ('raw_data_2='+str(raw_data_2))
+for loop1 in range(len(raw_data_2)/density_count):
+    x_2 = raw_data_2[loop1*density_count:loop1*density_count+density_count,2]
+    y_2 = raw_data_2[loop1*density_count:loop1*density_count+density_count,3]
+    spldens_2 = np.linspace(density_min,density_max,num=interpol_count) 
+    f_2       = interpolate.interp1d(x_2,y_2,kind=kind)
+    y_new_2   = np.zeros(interpol_count)
+    y_new_2   = f_2(spldens_2)
+    saturation_point_2[loop1,1] = np.min(y_new_2)
+    temp = spldens_2[np.where(y_new_2 == np.min(y_new_2))]
+    saturation_point_2[loop1,0] = temp[0]
+x_list_2 = saturation_point_2[:,0]
+y_list_2 = saturation_point_2[:,1]
+print ('satruation_point='+str(saturation_point_2))
+
+
 fig_saturation_point = plt.figure('fig_saturation_point')
 
+
+
 l1 = plt.scatter(x_list,y_list,color = 'b', s = 10, marker='x')
+l2 = plt.scatter(x_list_2,y_list_2,color = 'r', s=20, marker='x')
 plt.xlim((0.10,0.22))
 plt.ylim((-25,-10))
 plot_path = 'saturation_point_cD_%.2f_%.2f_cE_%.2f_%.2f.eps' % (cD_min,cD_max,cE_min,cE_max)
 plt.savefig(plot_path)
 plt.show()
 for loop1 in range(cE_count*cD_count):
-    print ('saturation_density ='+str(saturation_point[loop1,0])+'saturation_snm ='+str(saturation_point[loop1,1]))
-
+    yy = 1
+#    print ('saturation_density ='+str(saturation_point[loop1,0])+'saturation_snm ='+str(saturation_point[loop1,1]))

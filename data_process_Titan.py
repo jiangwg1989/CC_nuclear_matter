@@ -4,6 +4,21 @@
 import numpy as np
 import re
 
+
+def start_from_break_point(file_path,line_num):
+    with open(file_path,'r') as f_1:
+        data = f_1.readlines()
+        wtf = re.match('#', 'abc',flags=0)
+        temp_1 = re.findall(r"[-+]?\d+\.?\d*",data[line_num-1])
+        DNNLO450_input[0:6] = temp_1[0:6]
+        temp_1 = re.findall(r"[-+]?\d+\.?\d*",data[line_num])
+        DNNLO450_input[6:12] = temp_1[0:6]
+        temp_1 = re.findall(r"[-+]?\d+\.?\d*",data[line_num+1])
+        DNNLO450_input[12:17] = temp_1[0:5]
+
+
+
+
 ######################################################
 ######################################################
 #####      read .out data 
@@ -30,12 +45,12 @@ def input_file(file_path):
 ######################################################
 particle_num = 132
 neutron_num = 66
-cE_min = 0
-cE_max = 0
+cE_min = 0.03
+cE_max = 0.03
 cE_gap = 1
 cE_count = int( (cE_max - cE_min) / cE_gap + 1 )
-cD_min = 0
-cD_max = 0
+cD_min = 0.69
+cD_max = 0.69
 cD_gap = 1
 cD_count = int( (cD_max - cD_min) / cD_gap + 1 )
 density_min = 0.12
@@ -46,6 +61,36 @@ titan_run_path = '/lustre/atlas/scratch/w01/nph123/runs/nucmat_test'
 
 data_num = cE_count*cD_count*density_count
 raw_data = np.zeros((data_num,7),dtype = np.float)  # cD,cE,density,snm,pnm
+
+vec_input = np.zeros(15)
+DNNLO450_input = np.array([-0.74, #ci
+            -0.49,
+            -0.65,
+             0.96,
+            -0.33813946528363, #Ct_1S0np
+            -0.33802308849055, #Ct_1S0nn
+            -0.33713665635790, #Ct_1S0pp 
+            -0.22931007944035, #Ct_3S1(pp,nn,np)
+             2.47658908242147, #C_1S0
+             0.64555041107198, #C_3P0
+            -1.02235931835913, #C_3P1
+            -0.87020321739728, #C_3P2
+            -0.02854100307153, #C_1P1
+             0.69595320984261, #C_3S1
+             0.35832984489387, #C_3S1-3D1
+             0.79,             #cD
+             0.017])           #cE
+
+start_from_break_point('./pounders.out',1)
+
+vec_input[0:15] = DNNLO450_input[0:15]
+cE_min = DNNLO450_input[16]
+cE_max = DNNLO450_input[16]
+cD_min = DNNLO450_input[15]
+cD_max = DNNLO450_input[15]
+
+print ('vec_input='+str(vec_input))
+
 
 
 ######################################################

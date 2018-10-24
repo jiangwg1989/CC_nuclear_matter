@@ -3,6 +3,19 @@
 ####################################################
 import numpy as np
 import os
+import re
+
+def start_from_break_point(file_path,line_num):
+    with open(file_path,'r') as f_1:
+        data = f_1.readlines()
+        wtf = re.match('#', 'abc',flags=0)
+        temp_1 = re.findall(r"[-+]?\d+\.?\d*",data[line_num-1])
+        DNNLO450_input[0:6] = temp_1[0:6]
+        temp_1 = re.findall(r"[-+]?\d+\.?\d*",data[line_num])
+        DNNLO450_input[6:12] = temp_1[0:6]
+        temp_1 = re.findall(r"[-+]?\d+\.?\d*",data[line_num+1])
+        DNNLO450_input[12:17] = temp_1[0:5]
+
 
 
 
@@ -11,7 +24,7 @@ def output_ccm_in_file(file_path,cD,cE,LEC_ci,c1s0,c3s1,cnlo,particle_num,matter
         f_1.write('!Chiral order for Deltas(LO = 0,NLO=2,NNLO=3,N3LO=4) and cutoff'+'\n')
         f_1.write('3, 450\n')
         f_1.write('! cE and cD 3nf parameters:'+'\n' )
-        f_1.write('%.2f, %.2f\n' % (cE,cD))
+        f_1.write('%.8f, %.8f\n' % (cE,cD))
         f_1.write('! LEC ci \n')
         f_1.write('%.12f, %.12f, %.12f, %.12f \n' % (LEC_ci[0],LEC_ci[1],LEC_ci[2],LEC_ci[3]))
         f_1.write('!c1s0 & c3s1 \n')
@@ -50,12 +63,12 @@ def output_ccm_in_file(file_path,cD,cE,LEC_ci,c1s0,c3s1,cnlo,particle_num,matter
 nmax = 4
 particle_num = 132
 neutron_num = 66
-cE_min = 0
-cE_max = 0
+cE_min = 0.03000471
+cE_max = 0.03000471
 cE_gap = 1 
 cE_count = int( (cE_max - cE_min) / cE_gap + 1 )
-cD_min = 0
-cD_max = 0
+cD_min = 0.68668995
+cD_max = 0.68668995
 cD_gap = 1
 cD_count = int( (cD_max - cD_min) / cD_gap + 1 )
 density_min = 0.12
@@ -65,29 +78,58 @@ density_count = int( (density_max - density_min) / density_gap +1 )
 titan_run_path = '/lustre/atlas/scratch/w01/nph123/runs/nucmat_test'
 nodes_num = 300
 threads_num = 16
-walltime = '03:00:00'
+pnm_walltime = '00:30:00'
+snm_walltime = '03:00:00'
 LEC_ci = np.zeros(4)
 c1s0   = np.zeros(3)
 c3s1   = np.zeros(3)
 cnlo   = np.zeros(7)
-
 vec_input = np.zeros(15)
 
-vec_input[0]  = -0.74   
-vec_input[1]  = -0.49
-vec_input[2]  = -0.65
-vec_input[3]  = 0.96
-vec_input[4]  =-0.33812917 
-vec_input[5]  =-0.33353624
-vec_input[6]  =-0.33719237
-vec_input[7]  =-0.22935674
-vec_input[8]  =2.47935168
-vec_input[9]  =0.6491999
-vec_input[10] =-0.93349213
-vec_input[11] =-0.87004299
-vec_input[12] =-0.02568263
-vec_input[13] =0.69380477
-vec_input[14] =0.34993141
+
+DNNLO450_input = np.array([-0.74, #ci
+            -0.49,
+            -0.65,
+             0.96,
+            -0.33813946528363, #Ct_1S0np
+            -0.33802308849055, #Ct_1S0nn
+            -0.33713665635790, #Ct_1S0pp 
+            -0.22931007944035, #Ct_3S1(pp,nn,np)
+             2.47658908242147, #C_1S0
+             0.64555041107198, #C_3P0
+            -1.02235931835913, #C_3P1
+            -0.87020321739728, #C_3P2
+            -0.02854100307153, #C_1P1
+             0.69595320984261, #C_3S1
+             0.35832984489387, #C_3S1-3D1
+             0.79,             #cD
+             0.017])           #cE
+
+start_from_break_point('./pounders.out',1)
+
+vec_input[0:15] = DNNLO450_input[0:15]
+cE_min = DNNLO450_input[16]
+cE_max = DNNLO450_input[16]
+cD_min = DNNLO450_input[15]
+cD_max = DNNLO450_input[15]
+
+print ('vec_input='+str(vec_input))
+
+#vec_input[0]  = -0.74   
+#vec_input[1]  = -0.49
+#vec_input[2]  = -0.65
+#vec_input[3]  = 0.96
+#vec_input[4]  = -0.33982408 
+#vec_input[5]  = -0.33847639
+#vec_input[6]  = -0.3387161
+#vec_input[7]  = -0.2860546
+#vec_input[8]  = 2.52024031
+#vec_input[9]  = 0.64477023
+#vec_input[10] = -0.90129773
+#vec_input[11] = -0.88829717
+#vec_input[12] = 0.18364315
+#vec_input[13] = 1.31945937
+#vec_input[14] = 0.72331122
 
 
 LEC_ci[0] = vec_input[0]
@@ -184,7 +226,7 @@ with open(file_path,'w') as f_1:
     f_1.write('#PBS -N nuclearmatter'+'\n')
     f_1.write('#PBS -j eo'+'\n')
     f_1.write('#PBS -q batch'+'\n')
-    f_1.write('#PBS -l walltime='+walltime+',nodes='+str(int(nodes_num))+'\n')
+    f_1.write('#PBS -l walltime='+snm_walltime+',nodes='+str(int(nodes_num))+'\n')
     f_1.write('#PBS -A NPH123'+'\n\n')
     f_1.write('export OMP_NUM_THREADS='+str(int(threads_num))+'\n\n')
     f_1.write('cd '+titan_run_path+'\n')
@@ -212,7 +254,7 @@ with open(file_path,'w') as f_1:
     f_1.write('#PBS -N nuclearmatter'+'\n')
     f_1.write('#PBS -j eo'+'\n')
     f_1.write('#PBS -q batch'+'\n')
-    f_1.write('#PBS -l walltime='+walltime+',nodes='+str(int(nodes_num))+'\n')
+    f_1.write('#PBS -l walltime='+pnm_walltime+',nodes='+str(int(nodes_num))+'\n')
     f_1.write('#PBS -A NPH123'+'\n\n')
     f_1.write('export OMP_NUM_THREADS='+str(int(threads_num))+'\n\n')
     f_1.write('cd '+titan_run_path+'\n')
